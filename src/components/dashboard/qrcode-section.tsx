@@ -1,16 +1,37 @@
 "use client";
 
+import Image from "next/image";
 import { FiDownload, FiShare2 } from "react-icons/fi"
 
-const QRCodeSection = () => {
+const QRCodeSection = ({ qrCode, profileUrl }: { qrCode: string, profileUrl: string }) => {
     const handleDownloadQR = () => {
-        // TODO: Implement QR code download
-        console.log('Downloading QR code...');
+        try {
+            const a = document.createElement("a");
+            a.href = qrCode; // this is already a base64 image
+            a.download = "profile-qr.png"; // file name
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } catch (error) {
+            console.error("Failed to download QR code:", error);
+        }
     };
 
-    const handleShareProfile = () => {
-        // TODO: Implement share functionality
-        console.log('Sharing profile...');
+    const handleShareProfile = async () => {
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: "Check out my profile!",
+                    text: "Scan this QR code or click the link to view my profile.",
+                    url: profileUrl, // ⚠ This will share the QR image, not the link
+                });
+            } else {
+                await navigator.clipboard.writeText(profileUrl);
+                alert("QR code link copied to clipboard!");
+            }
+        } catch (error) {
+            console.error("Failed to share profile:", error);
+        }
     };
 
     return (
@@ -19,8 +40,12 @@ const QRCodeSection = () => {
 
             <div className="text-center mb-6">
                 <div className="w-48 h-48 bg-muted rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <div className="w-32 h-32 bg-foreground rounded-lg flex items-center justify-center">
-                        <span className="text-background text-2xl font-bold">QR</span>
+                    <div className="overflow-hidden w-32 h-32 bg-foreground rounded-lg flex items-center justify-center">
+                        <Image 
+                            src={qrCode} 
+                            alt="qr code image" 
+                            height={130} width={130} 
+                        />
                     </div>
                 </div>
 

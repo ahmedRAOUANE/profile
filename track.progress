@@ -21,8 +21,15 @@ DONE:
 - Feature: update row lovel security storage policies on supabase
 - Issue: fix the image publicUrl returning {"statusCode":"404","error":"Bucket not found","message":"Bucket not found"} response 
             - and revaliadte the pages dashboard and profile
-- Feature: build server action for social links
+- Feature: build social links
+            - build social links logic
+            - build server actions for handling social links
+- Feature: build server action to get full profile (profile data + social links) in one response
 - update the DAL for more consistency
+- Feature: complete the [uid]/page (profile page) UI
+- update the dashboard page to become dynamic - for using cookies to check auth in getUser function
+- Feature: build UUID validation guard
+- Feature: add building qr code feature
 
 ONGOING:
 - 
@@ -32,7 +39,6 @@ DONE/FIXED:
 
 TODO:
 - build update social links logic + update the data structure + build getIcon function + build the UI
-- add building qr code feature + update the data structure to contain qr code image link
 - build settings page
 - make the quick stats component a parallel route
 - make the profile information a parallel route 
@@ -43,11 +49,9 @@ INSTRUCTIONS:
 so if any user somehow could baypass the middleware it will be fully accessable
 as a solution we protected the server actions by checking the user authentication with every opration
 
-- build social links logic
-- build server actions for handling social links
-- build server action to get full profile (profile data + social links) in one response
 
--- now we have this error when build the app: utils/user > getUser > Error Error: Dynamic server usage: Route /dashboard couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+DONE/FIXED:
+- Issue: -- now we have this error when build the app: utils/user > getUser > Error Error: Dynamic server usage: Route /dashboard couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
     at r (C:\Users\Administrator\Desktop\Projects\NextJs\profile\.next\server\chunks\602.js:19:11054)
     at n (C:\Users\Administrator\Desktop\Projects\NextJs\profile\.next\server\chunks\367.js:12:24599)
     at g (C:\Users\Administrator\Desktop\Projects\NextJs\profile\.next\server\app\api\auth\confirm\route.js:1:664)

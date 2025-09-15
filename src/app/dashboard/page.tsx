@@ -10,14 +10,18 @@ import LogoutBtn from '@/components/logout-btn';
 import { getFullProfile } from '@/actions/profile';
 import { ProfileData } from '../../../types/profile-data';
 import { baseUrl } from '@/constants';
+import { generateQRCode } from '@/actions/qr-code';
 
 export const dynamic = "force-dynamic";
 
 const DashboardPage = async () => {
     const profileResponse = await getFullProfile();
-// console.log("profile response from dashboard page: ", profileResponse)
-
+    // console.log("profile response from dashboard page: ", profileResponse)
+    
     const profileData = (profileResponse.success && "data" in profileResponse) ? profileResponse.data : null
+    
+    const profileUrl = `${baseUrl}/${profileData?.id}`;
+    const qrCode = await generateQRCode(profileUrl);
 
     return (
         <div className="min-h-screen bg-background">
@@ -69,10 +73,10 @@ const DashboardPage = async () => {
                     {/* Sidebar */}
                     <div className="space-y-6">
                         {/* QR Code Section */}
-                        <QRCodeSection />
+                        <QRCodeSection profileUrl={profileUrl} qrCode={qrCode} />
 
                         {/* Profile Link Section */}
-                        <ProfileLinkSection profileUrl={`${baseUrl}/${profileData?.id}`} />
+                        <ProfileLinkSection profileUrl={profileUrl} />
 
                         {/* Quick Actions */}
                         {/* <QuickActionsSection /> */}
