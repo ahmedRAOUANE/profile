@@ -10,12 +10,13 @@ const SocialLinkBtn = ({ link }: { link: SocialLink }) => {
 
     return (
         <button
+            type="button"
             key={link.id}
             onClick={() => handleSocialLinkClick(link.url)}
             className="cursor-pointer group p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all duration-200 text-left"
         >
             <div className="flex items-center space-x-4">
-                <span className="text-3xl">{link.icon}</span>
+                {/* <span className="text-3xl">{link.icon}</span> */}
 
                 <div className="flex-1">
                     <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">

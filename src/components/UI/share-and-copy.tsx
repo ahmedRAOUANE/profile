@@ -11,8 +11,8 @@ const ShareAndCopy = ({ profileData }: { profileData: ProfileData }) => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: `${profileData?.fullName}'s Profile`,
-                    text: `Check out ${profileData?.fullName}'s digital profile`,
+                    title: `${profileData?.username}'s Profile`,
+                    text: `Check out ${profileData?.username}'s digital profile`,
                     url: window.location.href,
                 });
             } catch (error) {

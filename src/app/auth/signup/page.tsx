@@ -23,7 +23,9 @@ const SignupPage = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <Logo className="w-12 h-12 mb-4 rounded-xl" />
+            
             <h1 className="text-2xl font-bold text-foreground mb-2">Create your account</h1>
+            
             <p className="text-muted-foreground">
               Enter your details to sign up and start using ProfileQR
             </p>
@@ -43,7 +45,7 @@ const SignupPage = () => {
           <div className="text-center mt-6">
             <p className="text-muted-foreground">
               Already have an account?{' '}
-              <Link href="/login" className="text-primary hover:text-primary/90 font-medium">
+              <Link href="/auth/login" className="text-primary hover:text-primary/90 font-medium">
                 Sign in
               </Link>
             </p>

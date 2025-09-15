@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
+import { createClientSb } from '@/lib/supabase/client';
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ const LoginForm = () => {
 
     const handleEmailLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        const supabase = createClient();
+        const supabase = createClientSb();
         setIsLoading(true);
         setError(null);
 

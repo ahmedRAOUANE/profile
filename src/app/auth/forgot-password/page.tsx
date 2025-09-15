@@ -67,6 +67,7 @@ const ForgotPasswordPage = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       // Could show a toast notification here
     } catch (error) {
+      console.log("forgot password error: ", error)
       setErrors({ general: 'Failed to resend email. Please try again.' });
     } finally {
       setIsLoading(false);
@@ -94,7 +95,7 @@ const ForgotPasswordPage = () => {
             <Logo className='w-12 h-12 mb-4 rounded-xl' />
             <h1 className="text-2xl font-bold text-foreground mb-2">Reset Password</h1>
             <p className="text-muted-foreground">
-              Enter your email address and we'll send you a link to reset your password
+              Enter your email address and we&apis;ll send you a link to reset your password
             </p>
           </div>
 
@@ -154,7 +155,7 @@ const ForgotPasswordPage = () => {
               <div>
                 <h2 className="text-xl font-semibold text-foreground mb-2">Check Your Email</h2>
                 <p className="text-muted-foreground mb-4">
-                  We've sent a password reset link to <span className="font-medium text-foreground">{email}</span>
+                    We&apos;ve sent a password reset link to <span className="font-medium text-foreground">{email}</span>
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Click the link in the email to reset your password. The link will expire in 1 hour.
@@ -190,7 +191,7 @@ const ForgotPasswordPage = () => {
           <div className="mt-8 pt-6 border-t border-border">
             <div className="text-center space-y-3">
               <p className="text-sm text-muted-foreground">
-                Don't see the email? Check your spam folder or{' '}
+                Don&apos;t see the email? Check your spam folder or{' '}
                 <button
                   type="button"
                   onClick={handleResendEmail}

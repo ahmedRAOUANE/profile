@@ -1,11 +1,14 @@
 "use server";
 
+/**
+ * this action is in progress, not yet ready for production
+ */
 import { baseUrl } from "@/constants";
-import { createClient } from "@/lib/supabase/server";
+import { createServerSb } from "@/lib/supabase/server";
 import { Provider } from "@supabase/supabase-js";
 
 const signInWith = (provider: Provider) => async () => {
-    const supabase = await createClient();
+    const supabase = await createServerSb();
     const { error, data } = await supabase.auth.signInWithOAuth({
         provider,
         options: {

@@ -1,0 +1,30 @@
+<!-- favicon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64" preserveAspectRatio="xMidYMid meet">
+  <title>P favicon</title>
+  <style>
+    /* Match your light and dark theme tokens */
+    :root {
+      --primary: #12b8a6;              /* light */
+      --primary-foreground: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #2dd4bf;            /* dark */
+        --primary-foreground: #052a28;
+      }
+    }
+
+    .bg { fill: var(--primary); }
+    .fg {
+      color: var(--primary-foreground);
+      fill: var(--primary-foreground);
+      font: 700 40px/1 Arial, Helvetica, sans-serif; /* font-bold + body font stack */
+    }
+  </style>
+
+  <!-- bg-primary -->
+  <rect class="bg" x="0" y="0" width="64" height="64" />
+
+  <!-- centered, bold “P” (text-xl visual weight scaled for the 64px viewBox) -->
+  <text class="fg" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">P</text>
+</svg>

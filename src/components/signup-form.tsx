@@ -1,11 +1,11 @@
 "use client";
 
-import { createClient } from "@/lib/supabase/client";
+import { baseUrl } from "@/constants";
+import { createClientSb } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignupForm = () => {
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
@@ -15,7 +15,7 @@ const SignupForm = () => {
 
     const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault();
-        const supabase = createClient();
+        const supabase = createClientSb();
         setIsLoading(true);
         setError(null);
 
@@ -30,12 +30,13 @@ const SignupForm = () => {
                 email,
                 password,
                 options: {
-                    emailRedirectTo: `${window.location.origin}/protected`,
+                    emailRedirectTo: `${baseUrl}/dashboard`,
                 },
             });
-            if (error) throw error;
+            if (error) throw error
             router.push("/auth/signup-success");
         } catch (error: unknown) {
+            console.log("SignupForm > signup error: ", error);
             setError(error instanceof Error ? error.message : "An error occurred");
         } finally {
             setIsLoading(false);

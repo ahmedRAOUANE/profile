@@ -1,21 +1,23 @@
 export interface SocialLink {
-    id: number;
+    id: string;
+    profile_id: string;
     platform: string;
     url: string;
-    icon: string;
-    isActive: boolean;
+    is_active: boolean;
 }
 
 export interface ProfileData {
-    uid: string;
-    fullName: string;
+    id: string;
+    username: string;
+    full_name: string;
     email: string;
     bio: string;
-    avatar: string | null;
-    socialLinks: SocialLink[];
+    avatar_url: string | null;
+    social_links: SocialLink[];
     theme: 'light' | 'dark' | 'auto';
     customColors?: {
         primary?: string;
         background?: string;
     };
+    updated_at: string
 }
