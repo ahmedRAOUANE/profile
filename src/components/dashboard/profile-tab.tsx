@@ -63,36 +63,36 @@ const ProfileTab = ({ profileData }: ProfileTabProps) => {
     return (
         <div className="bg-card border border-border rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold text-foreground">Profile Information</h2>
+                <h2 className="md:text-xl font-semibold text-foreground">Profile Information</h2>
 
                 {isEditing ? (
-                    <div className="flex space-x-2">
+                    <div className="flex gap-2">
                         <button
                             type="button"
                             onClick={handleCancel}
-                            className="cursor-pointer flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors border border-border rounded-md px-3 py-2"
+                            className="cursor-pointer flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors border border-border rounded-md px-3 py-1"
                         >
                             <FiX className="w-4 h-4" />
-                            <span>Cancel</span>
+                            <span className='hidden md:block'>Cancel</span>
                         </button>
 
                         <button
                             type="button"
                             onClick={handleSave}
-                            className="cursor-pointer flex items-center space-x-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors rounded-md px-3 py-2"
+                            className="cursor-pointer flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors rounded-md px-3 py-1"
                         >
                             <FiSave className="w-4 h-4" />
-                            <span>Save</span>
+                            <span className='hidden md:block'>Save</span>
                         </button>
                     </div>
                 ) : (
                     <button
                         type="button"
                         onClick={() => setIsEditing(true)}
-                        className="cursor-pointer flex items-center space-x-2 text-primary hover:text-primary/90 transition-colors border border-border rounded-md px-3 py-2"
+                        className="cursor-pointer flex items-center gap-2 text-primary hover:text-primary/90 transition-colors border border-border rounded-md px-3 py-1"
                     >
                         <FiEdit3 className="w-4 h-4" />
-                        <span>Edit</span>
+                        <span className='hidden md:block'>Edit</span>
                     </button>
                 )}
             </div>
@@ -150,7 +150,7 @@ const ProfileTab = ({ profileData }: ProfileTabProps) => {
                                         name="username"
                                         value={data.username}
                                         onChange={handleInputChange}
-                                        className="focus:outline-0 w-full bg-background text-lg font-semibold text-foreground"
+                                        className="focus:outline-0 w-full bg-background text-xl font-semibold text-foreground"
                                     />
                                 </div>
 
@@ -164,14 +164,14 @@ const ProfileTab = ({ profileData }: ProfileTabProps) => {
                                         name="email"
                                         value={data.email}
                                         onChange={handleInputChange}
-                                        className="w-full bg-background text-foreground focus:outline-0"
+                                        className="w-full bg-background text-xs text-foreground focus:outline-0"
                                     />
                                 </div>
                             </div>
                         ) : (
                             <div className='space-y-1'>
-                                <h3 className="text-lg font-semibold text-foreground">{data.username !== "" ? data.username : profileData.username}</h3>
-                                <p className="text-muted-foreground">{data.email !== "" ? data.email : profileData.email}</p>
+                                <h3 className="text-xl font-semibold text-foreground">{data.username !== "" ? data.username : profileData.username}</h3>
+                                <p className="text-xs text-muted-foreground">{data.email !== "" ? data.email : profileData.email}</p>
                             </div>
                         )}
                     </div>

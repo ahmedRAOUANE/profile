@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FiEdit3, FiEye, FiEyeOff, FiSave, FiTrash2 } from "react-icons/fi";
+import { FiEdit3, FiEye, FiEyeOff, FiSave, FiTrash2, FiX } from "react-icons/fi";
 import { SocialLink } from "../../../types/profile-data";
 import { FiPlus } from "react-icons/fi";
 import { deleteSocialLink, updateSocialLink } from "@/actions/social-links";
@@ -50,16 +50,16 @@ const LinksTab = ({ links }: LinksTabProps) => {
     return (
         <div className="bg-card border border-border rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold text-foreground">
+                <h2 className="md:text-xl font-semibold text-foreground">
                     Social Media Links
                 </h2>
 
                 <button
                     type="button"
-                    className="cursor-pointer flex items-center space-x-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+                    className="cursor-pointer flex items-center gap-2 bg-primary text-primary-foreground px-3 py-1 rounded-md hover:bg-primary/90 transition-colors"
                 >
                     <FiPlus className="w-4 h-4" />
-                    <span>Add Link</span>
+                    <span className="hidden md:block">Add Link</span>
                 </button>
             </div>
 
@@ -108,8 +108,8 @@ const SocialLinkItem = ({ link, onDelete, onUpdate }: SocialLinkItemProps) => {
     };
 
     return (
-        <div className="flex items-center justify-between p-4 border border-border rounded-lg">
-            <div className="flex items-center space-x-3">
+        <div className="flex flex-col gap-2 items-end justify-between p-4 border border-border rounded-lg">
+            <div className="flex w-full items-center space-x-3">
                 {/* <span className="text-2xl">{localLink.icon}</span> */}
 
                 {isEditing ? (
@@ -139,12 +139,14 @@ const SocialLinkItem = ({ link, onDelete, onUpdate }: SocialLinkItemProps) => {
                 )}
             </div>
 
-            <div className="flex items-center space-x-2">
+            {/* actions area */}
+            <div className="flex items-center gap-2 overflow-hidden transition-all duration-300 ease-in-out">
                 {/* toggle */}
                 <button
+                    title="change visibility"
                     type="button"
                     onClick={toggleActive}
-                    className={`cursor-pointer p-2 rounded-lg transition-colors ${localLink.is_active
+                    className={`cursor-pointer px-2 py-1 rounded-lg transition-colors ${localLink.is_active
                             ? "bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-400"
                             : "bg-muted text-muted-foreground"
                         }`}
@@ -156,22 +158,44 @@ const SocialLinkItem = ({ link, onDelete, onUpdate }: SocialLinkItemProps) => {
                     )}
                 </button>
 
-                {/* edit */}
-                {isEditing ? (
-                    <button
-                        onClick={handleSave}
-                        title="Save"
-                        type="button"
-                        className="cursor-pointer p-2 text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                        <FiSave />
-                    </button>
-                ) : (
+                {/* edit / save-cancel */}
+                <div
+                    className={`flex items-center gap-2 transition-all duration-300 ease-in-out ${isEditing
+                            ? "opacity-100 scale-100 max-w-[200px]"
+                            : "opacity-0 scale-90 max-w-0"
+                        }`}
+                >
+                    {/* Cancel & Save only visible in edit mode */}
+                    {isEditing && (
+                        <>
+                            <button
+                                onClick={() => setIsEditing(false)}
+                                title="Cancel"
+                                type="button"
+                                className="cursor-pointer px-2 py-1 text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                <FiX />
+                            </button>
+
+                            <button
+                                onClick={handleSave}
+                                title="Save"
+                                type="button"
+                                className="cursor-pointer px-2 py-1 text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                <FiSave />
+                            </button>
+                        </>
+                    )}
+                </div>
+
+                {/* Edit button (hidden while editing) */}
+                {!isEditing && (
                     <button
                         onClick={() => setIsEditing(true)}
                         type="button"
                         title="Edit Link"
-                        className="cursor-pointer p-2 text-muted-foreground hover:text-foreground transition-colors"
+                        className="cursor-pointer px-2 py-1 text-muted-foreground hover:text-foreground transition-colors"
                     >
                         <FiEdit3 className="w-4 h-4" />
                     </button>
@@ -182,11 +206,12 @@ const SocialLinkItem = ({ link, onDelete, onUpdate }: SocialLinkItemProps) => {
                     type="button"
                     title="Delete Link"
                     onClick={() => onDelete(link.id)}
-                    className="cursor-pointer p-2 text-red-500 hover:text-red-600 transition-colors"
+                    className="cursor-pointer px-2 py-1 text-red-500 hover:text-red-600 transition-colors"
                 >
                     <FiTrash2 className="w-4 h-4" />
                 </button>
             </div>
+
         </div>
     );
 };

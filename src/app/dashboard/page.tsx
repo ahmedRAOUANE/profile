@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
 
 const DashboardPage = async () => {
     const profileResponse = await getFullProfile();
-    // console.log("profile response from dashboard page: ", profileResponse)
+    // TODO: add autorization check
     
     const profileData = (profileResponse.success && "data" in profileResponse) ? profileResponse.data : null
     

@@ -23,7 +23,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/signup" className="bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors">
+              <Link href="/auth/login" className="bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors">
                 Create Your Profile
               </Link>
 
@@ -140,7 +140,7 @@ export default function Home() {
             Join thousands of people who are already sharing their profiles with QR codes
           </p>
 
-          <Link href="/signup" className="bg-primary-foreground text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-foreground/90 transition-colors inline-block">
+          <Link href="/auth/login" className="bg-primary-foreground text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-foreground/90 transition-colors inline-block">
             Get Started Free
           </Link>
         </div>
@@ -159,8 +159,8 @@ export default function Home() {
             </div>
             
             <div className="flex space-x-6 text-muted-foreground">
-              <Link href="/login" className="hover:text-foreground transition-colors">Login</Link>
-              <Link href="/signup" className="hover:text-foreground transition-colors">Sign Up</Link>
+              <Link href="/auth/login" className="hover:text-foreground transition-colors">Login</Link>
+              <Link href="/auth/signup" className="hover:text-foreground transition-colors">Sign Up</Link>
               <Link href="#features" className="hover:text-foreground transition-colors">Features</Link>
             </div>
           </div>
